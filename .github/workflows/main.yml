@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: package.json - 5
         env:
-          REF:${{github.ref}}
+          REF: ${{github.ref}}
         run: echo ${REF##*/}
       - name: Dump GitHub context
         env:
