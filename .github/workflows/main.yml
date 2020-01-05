@@ -10,10 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Extract branch name
-          shell: bash
-          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          id: extract_branch
-
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+        id: extract_branch
       - name: package.json - 5
           run: echo ${{ steps.extract_branch.outputs.branch }}
       - name: Dump GitHub context
