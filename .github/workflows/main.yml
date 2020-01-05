@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: package.json - a
         env:
-          PACKAGE: ${{toJson('package.json')}}
+          PACKAGE: ${{toJson('/**package.json')}}
         run: echo "$PACKAGE"
       - name: package.json - b
         env:
