@@ -9,8 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: env check
+        run: env
       - name: split-branch-name
-        run: echo ::set-env name=branch::${${{github.ref}}##*/}
+        id: branchName
+        env:
+          REF: ${{github.ref}}
+        run: echo ::set-env name=branch::${REF##*/}
       - name: split-branch-name
         run: echo "${branch}"
       - name: Dump GitHub context
