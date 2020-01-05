@@ -16,7 +16,7 @@ jobs:
       - name: package.json - b
         env:
           PACKAGE: ${{toJson('package.json').version}}
-        run: echo package.json
+        run: echo "$PACKAGE"
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
