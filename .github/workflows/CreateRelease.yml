@@ -3,7 +3,7 @@ name: CreateRelease
 on: 
   push:
     tags: 
-      - 'version/v*'
+      - 'v*'
 
 jobs:
   build:
