@@ -9,14 +9,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: package.json - a
-        env:
-          PACKAGE: ${{toJson('/**package.json')}}
-        run: echo "$PACKAGE"
-      - name: package.json - b
-        env:
-          PACKAGE: ${{toJson('package.json').version}}
-        run: echo "$PACKAGE"
+      - name: package.json - 1
+          env:
+            BRANCH: ${{GITHUB_REF}}
+          run: echo ${BRANCH}
+      - name: package.json - 2
+          env:
+            BRANCH: ${{GITHUB_REF}}
+          run: echo "${BRANCH}"
+      - name: package.json - 3
+          env:
+            BRANCH: ${{GITHUB_REF}}
+          run: echo ${BRANCH##*/}
+      - name: package.json - 4
+          id: branch
+          env:
+            BRANCH: ${{GITHUB_REF}}
+          run: echo ::set-output name=branch::${BRANCH##*/}
+          outputs:
+            branch: # id of output
+              description: 'The time we greeted you'
+      - name: package.json - 5
+          run: echo ${{ steps.branch.branch}}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
