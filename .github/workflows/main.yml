@@ -9,28 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: package.json - 1
-          env:
-            BRANCH: ${{GITHUB_REF}}
-          run: echo ${BRANCH}
-      - name: package.json - 2
-          env:
-            BRANCH: ${{GITHUB_REF}}
-          run: echo "${BRANCH}"
-      - name: package.json - 3
-          env:
-            BRANCH: ${{GITHUB_REF}}
-          run: echo ${BRANCH##*/}
-      - name: package.json - 4
-          id: branch
-          env:
-            BRANCH: ${{GITHUB_REF}}
-          run: echo ::set-output name=branch::${BRANCH##*/}
-          outputs:
-            branch: # id of output
-              description: 'The time we greeted you'
+      - name: Extract branch name
+          shell: bash
+          run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          id: extract_branch
+
       - name: package.json - 5
-          run: echo ${{ steps.branch.branch}}
+          run: echo ${{ steps.extract_branch.outputs.branch }}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
