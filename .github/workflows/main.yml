@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: package.json - 5
-        run: echo ${{github.ref}}
+        env:
+          REF:${{github.ref}}
+        run: echo ${REF##*/}
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
