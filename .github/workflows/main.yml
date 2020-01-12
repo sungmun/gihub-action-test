@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: base Ref check
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT.event.base_ref"
+          GITHUB_CONTEXT: ${{ toJson(github.event.base_ref) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: env check
         run: env
       - name: split-branch-name
