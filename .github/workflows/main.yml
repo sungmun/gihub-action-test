@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name : branch created check
+        env :
+          - IS_BRANCH_CREATED: ${{toJson(github.event.created)}}
+        run : echo "$IS_BRANCH_CREATED"
       - name: env check
         run: env
       - name: split-branch-name
