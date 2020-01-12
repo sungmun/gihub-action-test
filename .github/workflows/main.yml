@@ -8,7 +8,7 @@ jobs:
     steps:
       - name : branch created check
         env :
-          - IS_BRANCH_CREATED: ${{ github.event.created }}
+          IS_BRANCH_CREATED: ${{ github.event.created }}
         run : echo "$IS_BRANCH_CREATED"
       - name: env check
         run: env
