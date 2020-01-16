@@ -71,7 +71,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: nginx
-          IMAGE_TAG: ${{ steps.branchName.branch}}
+          IMAGE_TAG: ${{ steps.branchName.outputs.branch}}
         run: |
           # Build a docker container and
           # push it to ECR so that it can
